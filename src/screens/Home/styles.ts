@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     color: "#FFF",
     padding: 16,
     fontSize: 18,
-    marginRight: 12,
+    marginRight: 8,
   },
   form: {
     flexDirection: "row",
@@ -39,5 +39,36 @@ export const styles = StyleSheet.create({
   buttonText: {
     fontSize: 24,
     color: "#fff",
+  },
+  taskInfoContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: "#333333",
+    paddingBottom: 20,
+    marginBottom: 50,
+  },
+  created: {
+    color: "#4EA8DE",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  completed: {
+    color: "#8284FA",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  infoGroup: {
+    flexDirection: "row",
+  },
+  counter: {
+    backgroundColor: "#333333",
+    color: "#FFF",
+    fontWeight: "bold",
+    borderRadius: 999,
+    marginLeft: 8,
+    paddingHorizontal: 9,
+    paddingVertical: 2,
   },
 });

@@ -34,9 +34,9 @@ export function Home() {
           </View>
         </View>
 
-        <Tasks />
-        <Tasks />
-        <Tasks />
+        <Tasks tasks="Integer urna interdum massa libero auctor neque turpis turpis semper." />
+        <Tasks tasks="Integer urna interdum massa libero auctor neque turpis turpis semper." />
+        <Tasks tasks="Integer urna interdum massa libero auctor neque turpis turpis semper." />
       </View>
     </View>
   );

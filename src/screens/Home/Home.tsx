@@ -1,11 +1,22 @@
-import { View, Image, TextInput, TouchableOpacity, Text } from "react-native";
+import { useState } from "react";
+import {
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  FlatList,
+} from "react-native";
+
 import { styles } from "./styles";
 
 import { Tasks } from "../../components/Tasks/Tasks";
 
 export function Home() {
+  const [tasks, setTasks] = useState([]);
+
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <View style={styles.container}>
         <Image source={require("../../assets/logo.png")} />
       </View>
@@ -34,9 +45,26 @@ export function Home() {
           </View>
         </View>
 
-        <Tasks tasks="Integer urna interdum massa libero auctor neque turpis turpis semper." />
-        <Tasks tasks="Integer urna interdum massa libero auctor neque turpis turpis semper." />
-        <Tasks tasks="Integer urna interdum massa libero auctor neque turpis turpis semper." />
+        <FlatList
+          data={tasks}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => <Tasks key={item} tasks={item} />}
+          showsVerticalScrollIndicator={false}
+          ListEmptyComponent={() => (
+            <View style={styles.listEmpty}>
+              <Image
+                style={{ marginTop: 50, marginBottom: 20 }}
+                source={require("../../assets/clipboard.png")}
+              />
+              <Text style={[styles.listEmptyText, { fontWeight: "bold" }]}>
+                Você ainda não tem tarefas cadastradas
+              </Text>
+              <Text style={styles.listEmptyText}>
+                Crie tarefas e organize seus itens a fazer
+              </Text>
+            </View>
+          )}
+        />
       </View>
     </View>
   );

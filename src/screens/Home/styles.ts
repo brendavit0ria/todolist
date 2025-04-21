@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   content: {
-    height: "100%",
+    flex: 1,
     backgroundColor: "#1A1A1A",
   },
   input: {
@@ -44,10 +44,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: "#333333",
-    paddingBottom: 20,
-    marginBottom: 50,
+    marginBottom: 22,
   },
   created: {
     color: "#4EA8DE",
@@ -70,5 +67,15 @@ export const styles = StyleSheet.create({
     marginLeft: 8,
     paddingHorizontal: 9,
     paddingVertical: 2,
+  },
+  listEmpty: {
+    alignItems: "center",
+    borderTopWidth: 1,
+    borderTopColor: "#333333",
+    marginHorizontal: 20,
+  },
+  listEmptyText: {
+    color: "#808080",
+    fontSize: 18,
   },
 });

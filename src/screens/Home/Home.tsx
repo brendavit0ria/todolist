@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Text,
   FlatList,
+  Alert,
 } from "react-native";
 
 import { styles } from "./styles";
@@ -14,6 +15,19 @@ import { Tasks } from "../../components/Tasks/Tasks";
 
 export function Home() {
   const [tasks, setTasks] = useState([]);
+
+  function handleTasksRemove() {
+    Alert.alert("Remover", "Você realmente deseja remover esta tarefa?", [
+      {
+        text: "Não",
+        style: "cancel",
+      },
+      {
+        text: "Sim",
+        onPress: () => Alert.alert("Tarefa removida com sucesso!"),
+      },
+    ]);
+  }
 
   return (
     <View style={{ flex: 1 }}>
@@ -48,7 +62,9 @@ export function Home() {
         <FlatList
           data={tasks}
           keyExtractor={(item) => item}
-          renderItem={({ item }) => <Tasks key={item} tasks={item} />}
+          renderItem={({ item }) => (
+            <Tasks key={item} tasks={item} onRemove={handleTasksRemove} />
+          )}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={() => (
             <View style={styles.listEmpty}>

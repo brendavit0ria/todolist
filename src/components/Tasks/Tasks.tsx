@@ -8,9 +8,10 @@ import { styles } from "./styles";
 
 type Props = {
   tasks: string;
+  onRemove: () => void;
 };
 
-export function Tasks({ tasks }: Props) {
+export function Tasks({ tasks, onRemove }: Props) {
   const [isChecked, setChecked] = useState(false);
 
   function handleToggleCheckbox() {
@@ -42,6 +43,7 @@ export function Tasks({ tasks }: Props) {
         style={{
           padding: 8,
         }}
+        onPress={onRemove}
       >
         <AntDesign name="delete" size={22} color="#808080" />
       </Pressable>

@@ -9,12 +9,20 @@ import {
   Alert,
 } from "react-native";
 
-import { styles } from "./styles";
+import { Ionicons } from "@expo/vector-icons";
 
 import { Tasks } from "../../components/Tasks/Tasks";
 
+import { styles } from "./styles";
+
 export function Home() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<string[]>([]);
+  const [addTasks, setAddTasks] = useState("");
+
+  function handleTasksAdd() {
+    setTasks((prevState) => [...prevState, addTasks]);
+    setAddTasks("");
+  }
 
   function handleTasksRemove() {
     Alert.alert("Remover", "Você realmente deseja remover esta tarefa?", [
@@ -41,9 +49,11 @@ export function Home() {
             style={styles.input}
             placeholder="Adicione uma nova tarefa"
             placeholderTextColor="#808080"
+            onChangeText={setAddTasks}
+            value={addTasks}
           />
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>+</Text>
+          <TouchableOpacity style={styles.button} onPress={handleTasksAdd}>
+            <Ionicons name="add-circle-outline" size={22} color="#F2F2F2" />
           </TouchableOpacity>
         </View>
 

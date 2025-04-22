@@ -36,10 +36,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  buttonText: {
-    fontSize: 24,
-    color: "#fff",
-  },
+
   taskInfoContainer: {
     flexDirection: "row",
     justifyContent: "space-between",

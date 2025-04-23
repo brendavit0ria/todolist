@@ -20,11 +20,14 @@ export function Home() {
   const [addTasks, setAddTasks] = useState("");
 
   function handleTasksAdd() {
+    if (addTasks.trim().length === 0) {
+      return Alert.alert("Campo Vazio", "Por favor, adicione uma tarefa.");
+    }
     setTasks((prevState) => [...prevState, addTasks]);
     setAddTasks("");
   }
 
-  function handleTasksRemove() {
+  function handleTasksRemove(taskToRemove: string) {
     Alert.alert("Remover", "Você realmente deseja remover esta tarefa?", [
       {
         text: "Não",
@@ -32,7 +35,10 @@ export function Home() {
       },
       {
         text: "Sim",
-        onPress: () => Alert.alert("Tarefa removida com sucesso!"),
+        onPress: () =>
+          setTasks((prevState) =>
+            prevState.filter((tasks) => tasks !== taskToRemove)
+          ),
       },
     ]);
   }
@@ -73,7 +79,11 @@ export function Home() {
           data={tasks}
           keyExtractor={(item) => item}
           renderItem={({ item }) => (
-            <Tasks key={item} tasks={item} onRemove={handleTasksRemove} />
+            <Tasks
+              key={item}
+              tasks={item}
+              onRemove={() => handleTasksRemove(item)}
+            />
           )}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={() => (

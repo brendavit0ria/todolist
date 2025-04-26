@@ -18,6 +18,7 @@ import { styles } from "./styles";
 export function Home() {
   const [tasks, setTasks] = useState<string[]>([]);
   const [addTasks, setAddTasks] = useState("");
+  const [completedTasks, setCompletedTasks] = useState<string[]>([]);
 
   function handleTasksAdd() {
     if (addTasks.trim().length === 0) {
@@ -35,12 +36,27 @@ export function Home() {
       },
       {
         text: "Sim",
-        onPress: () =>
+        onPress: () => {
           setTasks((prevState) =>
-            prevState.filter((tasks) => tasks !== taskToRemove)
-          ),
+            prevState.filter((task) => task !== taskToRemove)
+          );
+
+          setCompletedTasks((prevState) =>
+            prevState.filter((task) => task !== taskToRemove)
+          );
+        },
       },
     ]);
+  }
+
+  function handleToggleCompleted(taskToToggle: string) {
+    if (completedTasks.includes(taskToToggle)) {
+      setCompletedTasks((prevState) =>
+        prevState.filter((task) => task !== taskToToggle)
+      );
+    } else {
+      setCompletedTasks((prevState) => [...prevState, taskToToggle]);
+    }
   }
 
   return (
@@ -66,12 +82,12 @@ export function Home() {
         <View style={styles.taskInfoContainer}>
           <View style={styles.infoGroup}>
             <Text style={styles.created}>Criadas</Text>
-            <Text style={styles.counter}>0</Text>
+            <Text style={styles.counter}>{tasks.length}</Text>
           </View>
 
           <View style={styles.infoGroup}>
             <Text style={styles.completed}>Concluídas</Text>
-            <Text style={styles.counter}>9</Text>
+            <Text style={styles.counter}> {completedTasks.length}</Text>
           </View>
         </View>
 
@@ -83,6 +99,8 @@ export function Home() {
               key={item}
               tasks={item}
               onRemove={() => handleTasksRemove(item)}
+              isCompleted={completedTasks.includes(item)}
+              onToggleCompleted={() => handleToggleCompleted(item)}
             />
           )}
           showsVerticalScrollIndicator={false}

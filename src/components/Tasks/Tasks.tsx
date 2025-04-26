@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Pressable, Text } from "react-native";
 
 import Checkbox from "expo-checkbox";
@@ -9,28 +8,29 @@ import { styles } from "./styles";
 type Props = {
   tasks: string;
   onRemove: () => void;
+  isCompleted: boolean;
+  onToggleCompleted: () => void;
 };
 
-export function Tasks({ tasks, onRemove }: Props) {
-  const [isChecked, setChecked] = useState(false);
-
-  function handleToggleCheckbox() {
-    setChecked((prevState) => !prevState);
-  }
-
+export function Tasks({
+  tasks,
+  isCompleted,
+  onRemove,
+  onToggleCompleted,
+}: Props) {
   return (
-    <Pressable style={styles.container} onPress={handleToggleCheckbox}>
+    <Pressable style={styles.container} onPress={onToggleCompleted}>
       <Checkbox
         style={styles.checkbox}
-        value={isChecked}
-        onValueChange={setChecked}
-        color={isChecked ? "#5E60CE" : "#4EA8DE"}
+        value={isCompleted}
+        onValueChange={onToggleCompleted}
+        color={isCompleted ? "#5E60CE" : "#4EA8DE"}
       />
 
       <Text
         style={[
           styles.tasks,
-          isChecked && {
+          isCompleted && {
             textDecorationLine: "line-through",
             color: "#808080",
           },

@@ -20,7 +20,11 @@ export const styles = StyleSheet.create({
     color: "#FFF",
     padding: 16,
     fontSize: 18,
-    marginRight: 8,
+    marginRight: 6,
+  },
+  inputFocused: {
+    borderColor: "#5E60CE",
+    borderWidth: 1,
   },
   form: {
     flexDirection: "row",
@@ -60,7 +64,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#333333",
     color: "#FFF",
     fontWeight: "bold",
-    borderRadius: 999,
+    borderRadius: 50,
     marginLeft: 8,
     paddingHorizontal: 9,
     paddingVertical: 2,

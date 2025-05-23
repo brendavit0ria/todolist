@@ -6,14 +6,14 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import { styles } from "./styles";
 
 type Props = {
-  tasks: string;
+  title: string;
   onRemove: () => void;
   isCompleted: boolean;
   onToggleCompleted: () => void;
 };
 
 export function Tasks({
-  tasks,
+  title,
   isCompleted,
   onRemove,
   onToggleCompleted,
@@ -36,7 +36,7 @@ export function Tasks({
           },
         ]}
       >
-        {tasks}
+        {title}
       </Text>
 
       <Pressable
